@@ -35,7 +35,7 @@ def open_main_TelaCadastro():
 
     # Botão para cadastrar os dados
     button_cadastrar = Button(main_window, text="Cadastrar", command=cadastrar, bg="lightblue", bd=5, relief="groove") 
-    button_cadastrar.pack()
+    button_cadastrar.place(x=220, y=130)
 
 def login():
 
@@ -67,7 +67,7 @@ entry_password.pack()
 
 #altera a cor do botão e adiciona uma borda arredondada
 button_login = Button(root, text="Login", command=login, bg="lightblue", bd=4, relief="groove",font=20)
-button_login.pack()
+button_login.place(x=650, y=100)
 
 root.mainloop()
 
