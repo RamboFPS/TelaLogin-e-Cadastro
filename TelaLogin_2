@@ -1,5 +1,30 @@
+import pyodbc
 from tkinter import *
 from tkinter import messagebox
+
+dados_conexao = (
+    "Driver={SQL Server};"
+    "Server=DESKTOP-JONES;"
+    "Database=PythonSQL;"
+)
+# Conecta ao banco de dados
+conexao = pyodbc.connect(dados_conexao)
+cursor = conexao.cursor()
+print ('Conexão Bem Sucedida')
+
+# Insere os dados no banco de dados
+comando = """INSERT INTO Vendas (id_venda, cliente, produto, data_venda, preco, quantidade) 
+VALUES 
+      (2, 'Maria', 'Mouse', '08/04/2023', 25, 1)"""
+
+
+cursor.execute(comando)
+conexao.commit()
+
+
+
+# Fecha a conexão com o banco de dados
+conexao.close()   
 
 def open_main_TelaCadastro():
     main_window = Toplevel()
@@ -7,26 +32,45 @@ def open_main_TelaCadastro():
     main_window.geometry("500x400")
     
     # Labels e Entries para nome, valor e data
-    label_nome = Label(main_window, text="Nome:")
-    label_nome.pack()
-    entry_nome = Entry(main_window)
-    entry_nome.pack()
+    label_id_venda = Label(main_window, text="Id_venda:")
+    label_id_venda.pack()
+    entry_id_venda = Entry(main_window)
+    entry_id_venda.pack()
 
-    label_valor = Label(main_window, text="Valor:")
-    label_valor.pack()
-    entry_valor = Entry(main_window)
-    entry_valor.pack()
+    label_cliente = Label(main_window, text="Cliente:")
+    label_cliente.pack()
+    entry_cliente = Entry(main_window)
+    entry_cliente.pack()
+
+    label_produto = Label(main_window, text="Produto:")
+    label_produto.pack()
+    entry_produto = Entry(main_window)
+    entry_produto.pack()
+
+    label_preco = Label(main_window, text="Preço:")
+    label_preco.pack()
+    entry_preco = Entry(main_window)
+    entry_preco.pack()
 
     label_data = Label(main_window, text="Data:")
     label_data.pack()
     entry_data = Entry(main_window)
     entry_data.pack()
 
+    label_quantidade = Label(main_window, text="Quantidade:")
+    label_quantidade.pack()
+    entry_quantidade = Entry(main_window)
+    entry_quantidade.pack()
+
     # Função para cadastrar os dados
     def cadastrar():
-        nome = entry_nome.get()
-        valor = entry_valor.get()
+        cliente = entry_cliente.get()
+        preco = entry_preco.get()
         data = entry_data.get()
+        id_venda = entry_data.get()
+        produto = entry_data.get()
+        quantidade = entry_data.get()
+        
 
         # Inserir código para salvar os dados em um banco de dados ou arquivo
 
@@ -35,7 +79,7 @@ def open_main_TelaCadastro():
 
     # Botão para cadastrar os dados
     button_cadastrar = Button(main_window, text="Cadastrar", command=cadastrar, bg="lightblue", bd=5, relief="groove") 
-    button_cadastrar.place(x=220, y=130)
+    button_cadastrar.place(x=220, y=250)
 
 def login():
 
